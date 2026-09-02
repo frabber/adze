@@ -259,3 +259,34 @@ platform testing — do not, as they are not copyrightable core work.
   intent, brought forward.
 - Rust crates are almost entirely MIT/Apache and combine into an AGPL work
   without friction, so nothing in the dependency tree is affected.
+
+## D20. Contributed assets must be CC0 — decided (2026-09-02)
+
+Corrects one consequence of D19. D19 stands in full; only its reasoning about
+which contributions need a licence was wrong.
+
+**Context.** D19 stated that "bug repros as op logs, test meshes, platform
+testing" need no CLA because they are "not copyrightable core work". That is
+right for platform testing, which produces no work of authorship, and wrong for
+the other two. A 3D model is a creative work and carries copyright like any
+other; so does an op log, which encodes a model as the sequence that builds it.
+A contributed test mesh is therefore exactly as encumbering as contributed code:
+it would sit in the corpus, be redistributed with the project, and quietly
+remove the ability to license Adze commercially with its test suite intact.
+
+**Decision.** Contributed meshes, op logs and other assets must be dedicated to
+the public domain under CC0-1.0, stated in the pull request. Contributors may
+only submit assets they created themselves or that were already CC0 or public
+domain. Assets from a client, an employer or an asset store are not accepted.
+
+**Rejected.** Extending the code CLA to cover assets. CC0 is simpler to
+understand for the people most likely to contribute a mesh, who are artists
+rather than developers, and the project needs no rights beyond public domain for
+a test corpus. Also rejected: accepting assets under permissive-but-attributed
+licences such as CC-BY, which would put an attribution obligation on every
+redistribution of the test suite.
+
+**Consequences.** `CONTRIBUTING.md` states the CC0 requirement alongside the
+CLA. The corpus stays unencumbered, so the commercial licence D19 preserves can
+include the tests. The set of contributions needing no agreement at all shrinks
+to issues, bug reports, discussion and documentation corrections.

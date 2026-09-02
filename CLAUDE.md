@@ -13,8 +13,30 @@ partner. Read these before doing anything else in a session:
    before reading papers on it; write the note (conclusion first, then links)
    when a research task finishes so nothing is re-derived.
 
+## Session ritual
+**Start:** Faizal types `/continue` (or just "continue"). Claude follows the
+`continue` skill: read the marker, check the model tag, state the step, begin.
+
+**End:** the last message of every session finishes with this handoff block,
+filled in, and nothing after it:
+
+```
+--- handoff ---
+Done: <one line, what was completed and recorded>
+Marker: <the new CURRENT STEP id and title>
+Uncommitted: <none | list of files>
+Safe to clear: <yes | no, because ...>
+Next session: /clear  →  /model <opus|fable>  →  /continue
+```
+
+`/model` in Claude Code also saves that model as the default for new sessions,
+so the next session opens on the right model automatically.
+
 ## Working rules
-- One goal per session. Finish it, record it, stop.
+- One goal per session. Finish it, record it, stop. End every session by moving
+  the ROADMAP marker and stating whether it is "safe to clear" the session.
+- Model choice per step is tagged in ROADMAP.md ([Fable]/[Opus]); say at the start
+  of a session if the current step is tagged for the other model.
 - Every op and command is headless-testable. No modeling logic in UI code (D3).
 - The kernel is deterministic (D7): no HashMap iteration in `adze-mesh`/`adze-ops`/
   `adze-doc`; use ordered containers or sort before iterating.

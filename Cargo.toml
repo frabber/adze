@@ -1,0 +1,28 @@
+[workspace]
+resolver = "3"
+members = ["crates/*"]
+
+[workspace.package]
+version = "0.0.0"
+edition = "2024"
+rust-version = "1.85"
+license = "UNLICENSED"
+publish = false
+
+[workspace.dependencies]
+adze-mesh = { path = "crates/adze-mesh" }
+adze-ops = { path = "crates/adze-ops" }
+adze-doc = { path = "crates/adze-doc" }
+adze-cmd = { path = "crates/adze-cmd" }
+adze-io = { path = "crates/adze-io" }
+adze-render = { path = "crates/adze-render" }
+adze-app = { path = "crates/adze-app" }
+
+proptest = "1"
+
+[profile.dev]
+# Debug builds run the property tests; unoptimised topology code is painfully slow.
+opt-level = 1
+
+[profile.dev.package."*"]
+opt-level = 2

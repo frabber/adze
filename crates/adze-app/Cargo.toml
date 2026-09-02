@@ -1,0 +1,16 @@
+[package]
+name = "adze-app"
+description = "Adze application shell: egui UI over the command system, native and wasm."
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+publish.workspace = true
+
+[dependencies]
+adze-mesh.workspace = true
+adze-ops.workspace = true
+adze-doc.workspace = true
+adze-cmd.workspace = true
+adze-io.workspace = true
+adze-render.workspace = true

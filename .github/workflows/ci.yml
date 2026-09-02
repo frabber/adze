@@ -1,0 +1,56 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+env:
+  CARGO_TERM_COLOR: always
+  RUSTFLAGS: -D warnings
+
+jobs:
+  # D7 says the kernel is bit-exact on Linux, Windows, macOS and wasm, and D17
+  # names those as the test matrix. The determinism harness that compares
+  # results across them is M0.4; this job is the ground floor it needs.
+  test:
+    name: test (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+      - uses: Swatinem/rust-cache@v2
+      - run: cargo test --workspace --all-targets
+      # --all-targets skips doctests; the kernel's docs carry examples.
+      - run: cargo test --workspace --doc
+
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          components: rustfmt, clippy
+      - uses: Swatinem/rust-cache@v2
+      - run: cargo fmt --all --check
+      - run: cargo clippy --workspace --all-targets
+
+  # Web is the primary target (D4), so the kernel and the crates below the UI
+  # must keep compiling for wasm from the first commit rather than being ported
+  # to it later.
+  wasm:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: wasm32-unknown-unknown
+      - uses: Swatinem/rust-cache@v2
+      - run: >
+          cargo check --target wasm32-unknown-unknown
+          -p adze-mesh -p adze-ops -p adze-doc -p adze-cmd -p adze-io

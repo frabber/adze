@@ -1,0 +1,12 @@
+[package]
+name = "adze-io"
+description = "Adze exchange formats: OBJ now, USD and glTF later."
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+publish.workspace = true
+
+[dependencies]
+adze-mesh.workspace = true
+adze-doc.workspace = true

@@ -172,7 +172,7 @@ Build in public: public repo, devlog, web demo. Community contributes bug repros
 op logs, test meshes, platform testing, and later WASM plugins. No feature voting on
 the core. Signal from the crowd comes from usage in op logs, not from votes.
 
-## D15. Licence — pending (must decide before M7, first public web release)
+## D15. Licence — superseded by D19
 
 **Options.** (a) Open source under MIT/Apache. (b) Source-available with a paid
 hosted/native build, Plasticity-style. (c) Closed. Reading Blender code to learn is
@@ -203,3 +203,59 @@ snapping), `adze-doc` (op log, snapshots, replay, live ops, delta layers),
 `adze-app` (egui shell, native and wasm targets), `adze-cli` (headless utility).
 Dependencies flow strictly downward in that order; `adze-mesh` depends on nothing
 above it and never on wgpu or egui.
+
+## D19. Licence: AGPL-3.0-or-later, public from the start — decided (2026-09-02)
+
+Supersedes D15, which parked this until M7. It is settled early because the
+answer turned out to be knowable now and the repository cannot go public until
+it is.
+
+**Context.** D15 kept three options open: permissive open source, source-available
+with a paid tier, or closed. Adze will never be closed source, which removes (c).
+That leaves the question of which open licence protects a product whose primary
+form is a hosted web application (D4). It does not have to wait for M7: nothing
+learned between here and there changes the answer, and staying private until then
+costs CI minutes and the build-in-public loop of D14.
+
+**Decision.** AGPL-3.0-or-later, copyright held solely by Faizal Abdoelrahman.
+The repository is public from now, not from M7. Code contributions require a CLA;
+the contributions D14 actually invites — bug repros as op logs, test meshes,
+platform testing — do not, as they are not copyrightable core work.
+
+**Rejected.**
+- *MIT/Apache.* Adze is a web app. Permissive licensing means a competitor can
+  host it unmodified and owe nothing, which gives away the product itself rather
+  than the source.
+- *GPL-3.0.* Copyleft triggers on distribution, and running a service is not
+  distribution. For a hosted product it is close to no protection at all. AGPL
+  section 13 is the clause that matters here, and it is the only reason to prefer
+  AGPL over GPL.
+- *BUSL 1.1 with a timed conversion to Apache-2.0.* Encodes "never unavailable"
+  as a date and protects hosting revenue harder, but it is not open source, and
+  the Rust and graphics communities treat that as a meaningful difference. Kept
+  in mind as the fallback if hosted revenue ever needs stronger protection; note
+  that relicensing later is only possible while the copyright stays undivided,
+  which is what the CLA requirement protects.
+
+**Consequences.**
+- The commercial tier D15 wanted from option (b) survives without a
+  source-available licence: sole copyright means a non-AGPL licence can be sold
+  to anyone who needs to embed Adze. Accepting a code PR without a CLA destroys
+  that, permanently and quietly.
+- Porting Blender code is now permitted. Blender is GPLv2-or-later, usable as
+  GPLv3, and GPLv3 and AGPLv3 are explicitly cross-compatible, so D15's warning
+  that porting "removes (b) and (c)" no longer applies. This is worth most to
+  M4 bevel and M5 booleans. Tempered: Blender's bevel does not produce the
+  deterministic output topology and stable derived IDs the roadmap requires, so
+  the value is in consulting a battle-tested implementation, not in wholesale
+  porting.
+- Some studios and large companies refuse AGPL software outright. That is a real
+  limit on adoption in exactly the professional market Adze aims at, and the
+  answer to those users is a commercial licence, not a licence change.
+- GitHub Actions is unmetered on public repositories, so the full three-platform
+  matrix of D17 runs on every push at no cost. Docs-only pushes are filtered out
+  of CI to keep the signal clean, not to save minutes.
+- The M0-M5 development history is public as it happens, which is the D14
+  intent, brought forward.
+- Rust crates are almost entirely MIT/Apache and combine into an AGPL work
+  without friction, so nothing in the dependency tree is affected.

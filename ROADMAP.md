@@ -83,8 +83,8 @@ Exit: a model round-trips Adze → USD → Blender → USD → Adze with creases
 - [ ] Blender reload addon; watched-folder export
 
 ## M7. Public web release
-Exit: D15 licence decided; product on its own domain; 30 days without a data-loss report.
-- [ ] Licence decision (D15)
+Exit: product on its own domain; 30 days without a data-loss report.
+- [x] Licence decision (D15, settled early by D19: AGPL-3.0-or-later, public repo)
 - [ ] Self-hosted PWA with cross-origin isolation headers, threads enabled
 - [ ] File System Access save/export; download fallback for Firefox
 - [ ] Keymap audited against browser-owned shortcuts

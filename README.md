@@ -32,6 +32,12 @@ cargo run -p adze-cli
 CI runs the same tests on Linux, Windows and macOS, and checks that everything
 below the UI still compiles for `wasm32-unknown-unknown` (D4, D17).
 
+## Contributing
+
+`CONTRIBUTING.md` first — it says plainly how little there is to contribute to at
+M0, and what is actually useful. Code contributions require the CLA in `CLA.md`;
+issues, bug reports and documentation corrections do not.
+
 ## Licence
 
 AGPL-3.0-or-later. Copyright (C) 2026 Faizal Abdoelrahman. See `LICENSE`.
@@ -43,5 +49,6 @@ all fine.
 
 The copyright is held by one person, so a commercial licence for anyone who
 needs to embed Adze without the AGPL's obligations is available on request. Code
-contributions therefore need a CLA; bug repros, test meshes and platform testing
-do not (D14, D19).
+contributions therefore need a CLA, and contributed test meshes and op logs must
+be CC0, since a 3D model carries copyright like any other creative work. Issues,
+bug reports and documentation corrections need neither (D14, D19).

@@ -1,10 +1,22 @@
 name: CI
 
+# Roadmap and decision changes are committed separately from code, so a docs
+# push would otherwise spin up the whole matrix to rebuild an unchanged
+# workspace. A commit touching both code and docs still runs.
 on:
   push:
     branches: [main]
+    paths-ignore: ["**.md", "docs/**", "LICENSE"]
   pull_request:
+    # Repeated rather than anchored: GitHub's workflow parser does not support
+    # YAML anchors and aliases.
+    paths-ignore: ["**.md", "docs/**", "LICENSE"]
   workflow_dispatch:
+
+# A quick follow-up push supersedes the run it interrupted.
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 env:
   CARGO_TERM_COLOR: always

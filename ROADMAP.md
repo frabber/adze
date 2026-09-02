@@ -4,9 +4,10 @@ Milestones are ordered; each is done when its exit criteria hold, not when its
 boxes are ticked. The **CURRENT STEP** marker below is the single source of truth
 for what the next session does. Move it when the step is finished.
 
-> **CURRENT STEP:** M0.1 — Cargo workspace skeleton with the crate layout from D18,
-> CI running `cargo test` on Linux, Windows, and macOS, and a first property test
-> that asserts a cube is manifold.
+> **CURRENT STEP:** M0.2 — Spike: persistent (structurally shared) mesh storage
+> versus a plain mutable BMesh. Build both behind the `adze-mesh` surface, measure
+> adjacency query cost and memory on a 1M-face mesh, write
+> `docs/research/persistent-mesh.md`, and settle D5.
 
 ## Session and model guidance
 - **Clear the session when Claude says so.** A session ends when its step is
@@ -25,7 +26,7 @@ for what the next session does. Move it when the step is finished.
 
 ## M0. Foundations and spikes
 Exit: D5 and D6 are decided with measurements written to `docs/research/`.
-- [ ] M0.1 Workspace skeleton (D18), CI on three platforms, first property test [Opus]
+- [x] M0.1 Workspace skeleton (D18), CI on three platforms, first property test [Opus]
 - [ ] M0.2 Spike: persistent mesh storage vs mutable BMesh, 1M faces, query cost (D5) [Fable]
 - [ ] M0.3 Spike: integer-lattice coordinates, rotation rounding policy, unit model (D6) [Fable]
 - [ ] M0.4 Determinism harness: same op sequence hashed on all platforms and wasm (D7) [Opus]

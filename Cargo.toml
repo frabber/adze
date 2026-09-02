@@ -6,7 +6,7 @@ members = ["crates/*"]
 version = "0.0.0"
 edition = "2024"
 rust-version = "1.85"
-license = "UNLICENSED"
+license = "AGPL-3.0-or-later"
 publish = false
 
 [workspace.dependencies]

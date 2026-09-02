@@ -31,3 +31,17 @@ cargo run -p adze-cli
 
 CI runs the same tests on Linux, Windows and macOS, and checks that everything
 below the UI still compiles for `wasm32-unknown-unknown` (D4, D17).
+
+## Licence
+
+AGPL-3.0-or-later. Copyright (C) 2026 Faizal Abdoelrahman. See `LICENSE`.
+
+Adze is primarily a hosted web application, and the AGPL's section 13 is the
+only copyleft that reaches that form: run a modified Adze as a service and you
+owe your users the source. Self-host it, fork it, sell what you model with it —
+all fine.
+
+The copyright is held by one person, so a commercial licence for anyone who
+needs to embed Adze without the AGPL's obligations is available on request. Code
+contributions therefore need a CLA; bug repros, test meshes and platform testing
+do not (D14, D19).

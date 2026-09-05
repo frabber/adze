@@ -4,6 +4,13 @@ Milestones are ordered; each is done when its exit criteria hold, not when its
 boxes are ticked. The **CURRENT STEP** marker below is the single source of truth
 for what the next session does. Move it when the step is finished.
 
+> **BEFORE THE MARKER, ONE SESSION [Opus]:** Guided walkthrough of the existing
+> kernel — `arena.rs`, `id.rs`, `mesh.rs`, `check.rs`, `primitives.rs`, roughly
+> 700 lines. The subject is the Rust, not the algorithms: marker types and
+> variance, what the borrow checker forced, the ID macro, edition-2024
+> constructs, and where the D5/D6/D7 decisions show up in the code. No new code,
+> no marker move. Delete this note when the walkthrough has happened.
+>
 > **CURRENT STEP:** M0.2 — Spike: persistent (structurally shared) mesh storage
 > versus a plain mutable BMesh. Build both behind the `adze-mesh` surface, measure
 > adjacency query cost and memory on a 1M-face mesh, write

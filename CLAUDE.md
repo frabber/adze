@@ -23,6 +23,7 @@ filled in, and nothing after it:
 ```
 --- handoff ---
 Done: <one line, what was completed and recorded>
+PR: <url and state, or none>
 Marker: <the new CURRENT STEP id and title>
 Uncommitted: <none | list of files>
 Safe to clear: <yes | no, because ...>
@@ -46,10 +47,35 @@ so the next session opens on the right model automatically.
 - Prefer a property test over an example test for any op.
 - Claude makes design calls and says when a call is about feel rather than
   architecture; feel is validated by tester op logs, not by argument.
-- Commits: only when Faizal asks, always GPG-signed with the YubiKey (repo-local
+- Commits on a step branch are how the work is recorded and do not need a
+  separate ask; anything landing on `main` does, and normally lands by Faizal
+  merging the PR. Always GPG-signed with the YubiKey (repo-local
   `commit.gpgsign=true`, gmail identity). The PIN dialog is on the desktop; if it
-  times out because Faizal is away, report it and retry later. A decision or roadmap change is
-  committed separately from code.
+  times out because Faizal is away, report it and retry later. A decision or
+  roadmap change is committed separately from code.
+- Keep a step small enough that its diff can be read in one sitting. If a step
+  would land much more than a few hundred lines, split it and say so.
+
+## Code review
+Faizal reads far more of this code than he writes, and the point is to
+understand the Rust in detail, not only the architecture. The review surface is
+RustRover's Pull Requests window, not the GitHub web UI.
+
+- **One branch and one PR per roadmap step.** CI must be green before the PR is
+  ready. The ROADMAP marker moves when the PR merges, not when the code is
+  written.
+- **The PR description is written for a reader learning Rust.** Doc comments
+  explain the API to someone using it; the PR description explains why the
+  implementation is shaped the way it is. Name the language decisions in the
+  diff and the reasoning behind them — variance and marker types, what the
+  borrow checker forced, why a macro instead of a generic, edition-2024
+  constructs — and say which parts deserve close attention and which are
+  mechanical. Do not move this material into source comments; it would bury the
+  code.
+- **Unanswered review comments are picked up at the start of the next session**,
+  before new work.
+- Faizal asks for walkthroughs of existing code whenever he wants one; that is
+  ordinary session work and does not need a roadmap entry.
 
 ## Machines
 Linux laptop (Intel Arc, primary dev), Windows NUC with RTX 5070 (SSH, DX12,
